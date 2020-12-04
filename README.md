@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/68274794/101204463-ecb01100-3674-11eb-881e-4986973bb759.png)
+
 Url: https://rosenflix.herokuapp.com/
 
 This project was designed with React.js Hooks using Context API. 
