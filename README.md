@@ -1,4 +1,4 @@
-﻿# rosenflixDB
+﻿# rosenflix
 
 Url: https://rosenflix.herokuapp.com/
 ![image](https://user-images.githubusercontent.com/68274794/98708739-2f3e4080-238a-11eb-9c4d-c4686d0e3868.png)
