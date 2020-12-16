@@ -5,6 +5,7 @@ import "../../index.css";
 import { getLastId } from "../../shared/id-utils";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import Grid from "@material-ui/core/Grid";
 import SuccessMsg from "../SuccessMsg";
@@ -19,10 +20,20 @@ function AddNewMovie() {
   const [name, setName] = useState("");
   const [genres, setGenres] = useState([]);
   const [url, setUrl] = useState("");
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState("");
   const [showForm, setShowForm] = useState(true);
   const [isAdded, setIsAdded] = useState(false);
   const [isAllValid, setIsAllValid] = useState(true);
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
 
   const setNewGenres = (evt) => {
     let inputGenres = evt.target.value;
@@ -72,7 +83,7 @@ function AddNewMovie() {
     <div>
       {showForm ? (
         <div>
-          <form className="form" noValidate autoComplete="off">
+          <form className={classes.root} noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
               label="Name"
@@ -132,8 +143,7 @@ function AddNewMovie() {
       >
         Add New
       </Button>
-      <br />
-      <br />
+
       <Button variant="contained" color="secondary" onClick={goToMovies}>
         Back To Movies
       </Button>

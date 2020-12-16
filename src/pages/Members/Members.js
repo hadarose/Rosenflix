@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { MembersContext } from "./MembersContextAPI";
 import Member from "./Member";
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import "../../index.css";
 
 function Members() {
@@ -13,22 +13,23 @@ function Members() {
   const [members] = useContext(MembersContext);
   const [showMembers, setShowMembers] = useState(members);
 
-
   useEffect(() => {
     if (members) {
-      setShowMembers(members)
+      setShowMembers(members);
     }
-  }, [members])
+  }, [members]);
 
   const filterMembersByMemberName = (memberName) => {
-    const filteredResults = members.filter((member) => member.name.toLowerCase()
-      .includes(memberName.toLowerCase()));
+    const filteredResults = members.filter((member) =>
+      member.name.toLowerCase().includes(memberName.toLowerCase())
+    );
 
     setShowMembers(filteredResults);
-  }
+  };
 
   members.sort(function (a, b) {
-    const keyA = a.name.toLowerCase(), keyB = b.name.toLowerCase();
+    const keyA = a.name.toLowerCase(),
+      keyB = b.name.toLowerCase();
     if (keyA < keyB) return -1;
     if (keyA > keyB) return 1;
 
@@ -36,17 +37,19 @@ function Members() {
   });
 
   const goToAddMember = () => {
-    history.push('/rosenflix/add-new-member');
-  }
+    history.push("/rosenflix/add-new-member");
+  };
 
   return (
     <div>
-
       <Button
         variant="contained"
         color="secondary"
         style={{ marginRight: "10px" }}
-        onClick={goToAddMember}>Add A New Member</Button>
+        onClick={goToAddMember}
+      >
+        Add A New Member
+      </Button>
 
       <TextField
         id="outlined-margin-dense"
@@ -54,20 +57,26 @@ function Members() {
         label="Search By Name"
         variant="outlined"
         style={{ top: "-2px", marginRight: "10px", marginBottom: "10px" }}
-        onChange={({ target }) => filterMembersByMemberName(target.value)} />
+        onChange={({ target }) => filterMembersByMemberName(target.value)}
+      />
 
       {showMembers.length > 0 ? (
         <div className="membersDiv">
           <Grid container spacing={3}>
-            {showMembers.map(member => <Paper><Member member={member} /></Paper>)}
+            {showMembers.map((member) => (
+              <Paper key={member.email}>
+                <Member member={member} />
+              </Paper>
+            ))}
           </Grid>
         </div>
-      ) : <h2 className="addNewMsg">
+      ) : (
+        <h2 className="addNewMsg">
           Sorry, didn't find what you were looking for, try again!
-            </h2>}
-
+        </h2>
+      )}
     </div>
-  )
+  );
 }
 
 export default Members;

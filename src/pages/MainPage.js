@@ -28,7 +28,7 @@ function MainPage() {
             src="https://e1.pngegg.com/pngimages/10/90/png-clipart-clay-os-6-a-macos-icon-netflix-netflix-logo.png"
             className="logoImg"
           />
-          <em>Flix</em>
+          <em>flix</em>
         </h1>
       </a>
 

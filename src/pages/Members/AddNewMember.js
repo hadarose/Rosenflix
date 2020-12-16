@@ -3,6 +3,7 @@ import { MembersContext } from "./MembersContextAPI";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 import { getLastId } from "../../shared/id-utils";
 import { isValidEmail } from "../../shared/email-utils";
 import SuccessMsg from "../SuccessMsg";
@@ -19,6 +20,15 @@ function AddNewMember() {
   const [isEmailEmpty, setEmailEmpty] = useState(true);
   const [isAllValid, setIsAllValid] = useState(true);
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  }));
+
+  const classes = useStyles();
   const saveNewEmail = (evt) => {
     if (isValidEmail(evt.target.value)) {
       setEmail(evt.target.value);
@@ -62,7 +72,7 @@ function AddNewMember() {
     <div>
       {showForm ? (
         <div>
-          <form className="form" noValidate autoComplete="off">
+          <form className={classes.root} noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
               label="Name"
@@ -70,7 +80,6 @@ function AddNewMember() {
               onChange={(evt) => setName(evt.target.value)}
             />
             <br />
-
             {isEmailEmpty ? (
               <TextField
                 id="outlined-basic"
@@ -120,9 +129,6 @@ function AddNewMember() {
       >
         Add Member
       </Button>
-      <br />
-      <br />
-
       <Button
         variant="contained"
         color="secondary"
